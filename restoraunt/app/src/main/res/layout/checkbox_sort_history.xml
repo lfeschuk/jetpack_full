@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_margin="20dp">
+    <Button android:id="@+id/sort_by_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="מיין לפי כתובת"
+        />
+
+    <Button
+        android:id="@+id/sort_by_num_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/sort_by_address"
+        android:text="מיין לפי מספר הזמנה" />
+
+    <Button
+        android:id="@+id/sort_by_costumer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/sort_by_num_order"
+        android:text="מיין לפי לקוח" />
+
+    <Button
+        android:id="@+id/sort_by_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/sort_by_costumer"
+        android:text="מיין לפי תאריכים" />
+
+
+</RelativeLayout>

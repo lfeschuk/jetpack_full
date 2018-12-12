@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--
+                Add menu items here
+                Menu items with icon and Title
+        -->
+        <item
+            android:id="@+id/nav_1"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="משלוחים פעילים" />
+        <item
+            android:id="@+id/nav_2"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="משלוחים בקטנוע" />
+        <item
+            android:id="@+id/nav_3"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="מסלולך על המפה" />
+        <item
+            android:id="@+id/nav_4"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="כמות משלוחים" />
+        <item
+            android:id="@+id/nav_15"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="היסטוריית משלוחים" />
+        <item
+            android:id="@+id/nav_5"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="תקלה בקטנוע" />
+        <item
+            android:id="@+id/nav_6"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="לקיחת קטנוע" />
+        <item
+            android:id="@+id/nav_7"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="הוספת פרטים" />
+        <item
+            android:id="@+id/nav_8"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="הגשת משמרות" />
+        <item
+            android:id="@+id/nav_9"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="קבלת משמרות" />
+
+    </group>
+</menu>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout"
+    tools:context=".MainActivity">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+
+
+
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relative_id">
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="@string/app_name"
+                        android:layout_alignParentRight="true"
+                         />
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/on_or_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:theme="@style/SCBSwitch"
+
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+                    <TextView
+                        android:id="@+id/adress"
+                        android:visibility="gone"
+                        android:gravity="start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/relative_id"
+
+                        android:text="TextView" />
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/relative_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/adress">
+                        <TextView
+                            android:id="@+id/num_of_packs"
+                            android:gravity="start"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toEndOf="@id/image"
+                            android:text="TextView" />
+
+                        <ImageView
+                            android:id="@+id/image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_keyboard_arrow_down_black_18dp"
+                            app:layout_constraintEnd_toStartOf="@id/num_of_packs"
+                            tools:layout_editor_absoluteY="38dp" />
+
+                    </RelativeLayout>
+
+
+
+                </android.support.constraint.ConstraintLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/appBar">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.google.android.gms.maps.MapView>
+
+            <TextView
+                android:id="@+id/textViewNoActive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="20dp"
+                android:text="בכניסה למשמרת לחץ על הכפתור הקטן בפינה המשאלית ">
+
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/just_arrived"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/just_arrived"
+                android:background="@null"
+                android:layout_alignParentLeft="true" />
+
+            <ImageButton
+                android:id="@+id/picked_the_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/picked"
+                android:background="@null"
+                android:text="אספתי את המשלוח"
+                android:layout_alignParentLeft="true" />
+
+            <ImageButton
+                android:id="@+id/photo_butt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/picked_the_delivery"
+                android:layout_toRightOf="@+id/picked_the_delivery"
+                android:src="@drawable/photo"
+                android:background="@null"
+                android:text="whatsapp" />
+            <ImageButton
+                android:id="@+id/whatsapp_butt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/photo_butt"
+                android:layout_toRightOf="@+id/photo_butt"
+                android:src="@drawable/whatsap"
+                android:background="@null"
+                android:text="whatsapp" />
+
+            <ImageButton
+                android:id="@+id/waze_butt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/whatsapp_butt"
+                android:text="waze"
+                android:src="@drawable/waze"
+                android:background="@null"
+                android:layout_toRightOf="@+id/whatsapp_butt" />
+
+            <ImageButton
+                android:id="@+id/call_butt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/waze_butt"
+                android:text="call"
+                android:src="@drawable/call"
+                android:background="@null"
+                android:layout_toRightOf="@+id/waze_butt" />
+
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+    </RelativeLayout>
+
+    <!--
+         Navigation view to show the menu items
+    -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_items" />
+</android.support.v4.widget.DrawerLayout>

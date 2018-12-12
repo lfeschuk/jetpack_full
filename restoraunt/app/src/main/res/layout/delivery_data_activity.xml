@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/toolbar"/>
+
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/time_prepare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="זמן הכנה(דק):"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/time_prepare_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:inputType="number"
+                    app:layout_constraintTop_toBottomOf="@+id/time_prepare" />
+
+
+                <TextView
+                    android:id="@+id/num_of_pack_delivery_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="כמות חבילות"
+                    app:layout_constraintTop_toBottomOf="@+id/time_prepare_edit" />
+
+                <EditText
+                    android:id="@+id/num_of_pack_edit_text"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:layout_constraintTop_toBottomOf="@+id/num_of_pack_delivery_data" />
+
+                <TextView
+                    android:id="@+id/costumer_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="הערה:"
+                    app:layout_constraintTop_toBottomOf="@+id/num_of_pack_edit_text" />
+
+                <EditText
+                    android:id="@+id/comment_edit_text"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_comment" />
+
+                <TextView
+                    android:id="@+id/another_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="טלפון נוסף"
+                    app:layout_constraintTop_toBottomOf="@+id/comment_edit_text" />
+
+                <EditText
+                    android:id="@+id/another_phone_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:inputType="number"
+                    app:layout_constraintTop_toBottomOf="@+id/another_phone" />
+
+                <TextView
+                    android:id="@+id/intercume_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="קוד לאינטרקום:"
+                    app:layout_constraintTop_toBottomOf="@+id/another_phone_edit_text" />
+
+                <EditText
+                    android:id="@+id/intercume_code_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:inputType="number"
+                    app:layout_constraintTop_toBottomOf="@+id/intercume_code" />
+
+                <TextView
+                    android:id="@+id/different_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="כתובת נוספת"
+                    app:layout_constraintTop_toBottomOf="@+id/intercume_code_edit_text" />
+
+                <TextView
+                    android:id="@+id/delayed_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    app:layout_constraintTop_toBottomOf="@+id/different_address" />
+
+
+                <TextView
+                    android:id="@+id/pay_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="סכום הזמנה:(ש''ח)"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delayed_delivery" />
+
+                <EditText
+                    android:id="@+id/pay_amount_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pay_amount" />
+
+                <TextView
+                    android:id="@+id/success_text_buttom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="right"
+                    android:background="@color/blue"
+                    android:text="עודכן בהצלחה"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/pay_amount_edit_text" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/phone_costumer_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="טלפון לקוח"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/phone_costumer_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_costumer_text" />
+
+                <TextView
+                    android:id="@+id/costumer_name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="שם לקוח"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_costumer_edit_text" />
+
+                <EditText
+                    android:id="@+id/costumer_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_name_text" />
+
+                <TextView
+                    android:id="@+id/costumer_city_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="עיר"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_name_edit" />
+
+                <EditText
+                    android:id="@+id/costumer_city_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_city_text" />
+
+                <TextView
+                    android:id="@+id/costumer_street_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="רחוב"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_city_edit" />
+
+                <EditText
+                    android:id="@+id/costumer_street_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_street_text" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costumer_street_edit">
+
+                    <TextView
+                        android:id="@+id/costumer_floor_street"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="right"
+                        android:text="קומה"
+                        app:layout_constraintEnd_toStartOf="@+id/costumer_apartment_street"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/costumer_floor_edit"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:inputType="number"
+                        android:gravity="right"
+                        app:layout_constraintEnd_toStartOf="@+id/costumer_apartment_edit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_floor_street" />
+
+                    <TextView
+                        android:id="@+id/costumer_apartment_street"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="דירה"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/costumer_floor_street"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/costumer_apartment_edit"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:inputType="number"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/costumer_floor_edit"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_apartment_street" />
+
+                    <TextView
+                        android:id="@+id/costumer_building_street"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+
+                        android:text="בניין"
+                        app:layout_constraintEnd_toStartOf="@+id/costumer_entrance_street"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_floor_edit"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/costumer_building_edit"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:inputType="number"
+                        app:layout_constraintEnd_toStartOf="@+id/costumer_entrance_edit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_building_street" />
+
+                    <TextView
+                        android:id="@+id/costumer_entrance_street"
+                        android:layout_width="85dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="כניסה"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/costumer_building_street"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_apartment_edit" />
+
+                    <EditText
+                        android:id="@+id/costumer_entrance_edit"
+                        android:layout_width="85dp"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:inputType="number"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/costumer_building_edit"
+                        app:layout_constraintTop_toBottomOf="@+id/costumer_entrance_street" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <RadioGroup
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                    <RadioButton
+                        android:id="@+id/radioCash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:checked="true"
+                        android:text="@string/radio_cash" />
+
+                    <RadioButton
+                        android:id="@+id/radioCredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:text="@string/radio_credit" />
+
+                </RadioGroup>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="1.0">
+
+
+            <Button
+                android:id="@+id/button_assign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="סיים" />
+
+
+        </LinearLayout>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText
+        android:id="@+id/num_of_byke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="הזן מספר קטנוע"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/error_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מה התקלה?"
+        app:layout_constraintTop_toBottomOf="@id/num_of_byke"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

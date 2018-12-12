@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="רשיון רכב בתוקף" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="ביטוח בתוקף"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox"
+         />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="אורות תקינים"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2"/>
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ברקסים תקינים"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3"/>
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="צופר תקין"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox4"/>
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="אני משאר שיש ברשותי 400 ₪ עודף לפתיחת משמרת "
+        app:layout_constraintTop_toBottomOf="@+id/checkBox5"/>
+
+    <CheckBox
+        android:id="@+id/checkBox7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בדקתי שמן לקטנוע"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox6"/>
+
+
+    <EditText
+        android:id="@+id/plate_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/insert_plate_num"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox7"/>
+
+    <EditText
+        android:id="@+id/gas_card_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/insert_gas_card_num"
+        app:layout_constraintTop_toBottomOf="@+id/plate_num"/>
+
+    <EditText
+        android:id="@+id/company_phone_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/insert_company_phone_index"
+        app:layout_constraintTop_toBottomOf="@+id/gas_card_num"/>
+
+    <CheckBox
+        android:id="@+id/check_box_approve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/approve_text"
+        app:layout_constraintTop_toBottomOf="@+id/company_phone_index"/>
+
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_box_approve"
+        app:layout_constraintWidth_percent=".5" />
+
+
+</android.support.constraint.ConstraintLayout>

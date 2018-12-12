@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--
+                Add menu items here
+                Menu items with icon and Title
+        -->
+        <item
+            android:id="@+id/nav_1"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="הכנסת משלוח ממסעדה ללקוח" />
+        <item
+            android:id="@+id/nav_2"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="הכנסת משלוח דחוי" />
+        <item
+            android:id="@+id/nav_3"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="הכנסת משלוח מכתובת אחרת" />
+
+        <item
+            android:id="@+id/nav_4"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="היסטוריה" />
+        <item
+            android:id="@+id/nav_5"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="רשימת לקוחות" />
+        <item
+            android:id="@+id/nav_6"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="סטטיסטיקה" />
+
+    </group>
+</menu>

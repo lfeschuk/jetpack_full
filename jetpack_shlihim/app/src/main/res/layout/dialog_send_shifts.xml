@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/sunday1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Spinner
+            android:id="@+id/sunday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="יום ראשון: "
+            android:gravity="right"
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/monday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunday1"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/monday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="יום שני: "
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tuesday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/monday1"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/tuesday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="יום שלישי: "
+            android:gravity="right"
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wednesday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday1"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/wednesday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="יום רביעי: "
+            android:gravity="right"
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thursday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday1"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/thursday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="יום חמישי: "
+            android:gravity="right"
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/friday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/thursday1"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/friday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="יום שישי: "
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/saturday1"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/friday1"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/saturday"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="יום שבת: "
+            android:textSize="30dp"
+            android:textStyle="">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

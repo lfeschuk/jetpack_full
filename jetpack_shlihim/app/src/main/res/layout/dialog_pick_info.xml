@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_first">
+    <TextView
+        android:id="@+id/choose_profile"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="בחר תמונת פרופיל"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/camera"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:background="@null"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintStart_toEndOf="@+id/choose_profile" />
+
+    <ImageButton
+        android:id="@+id/galery"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:background="@null"
+        android:src="@drawable/ic_image"
+        app:layout_constraintStart_toEndOf="@+id/camera"
+
+        />
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toEndOf="@+id/galery"
+        />
+</android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/layout_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/choose_license"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="הוסף צילום רשיון נהיגה"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/camera2"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintStart_toEndOf="@+id/choose_license" />
+
+        <ImageButton
+            android:id="@+id/galery2"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_image"
+            app:layout_constraintStart_toEndOf="@+id/camera2"
+
+            />
+
+        <ImageView
+            android:id="@+id/profile_image2"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toEndOf="@+id/galery2" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_third"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/layout_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/choose_license2"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="הוסף צילום ת''ז"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/camera3"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintStart_toEndOf="@+id/choose_license2" />
+
+        <ImageButton
+            android:id="@+id/galery3"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_image"
+            app:layout_constraintStart_toEndOf="@+id/camera3"
+
+            />
+
+        <ImageView
+            android:id="@+id/profile_image3"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toEndOf="@+id/galery3" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/layout_third"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/choose_license4"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="הוסף צילום טופס 101"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/camera4"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintStart_toEndOf="@+id/choose_license4" />
+
+        <ImageButton
+            android:id="@+id/galery4"
+            android:layout_width="67dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/ic_image"
+            app:layout_constraintStart_toEndOf="@+id/camera4"
+
+            />
+
+        <ImageView
+            android:id="@+id/profile_image4"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toEndOf="@+id/galery4" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/layout_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/license_exp"
+            android:hint="הכנס תוקף רשיון נהיגה"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>

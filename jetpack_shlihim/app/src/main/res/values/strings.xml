@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">jetpack_shlihim</string>
+    <string name="login_screen_show">ברוך הבא ל jetpack</string>
+    <string name="login_button">הכנס</string>
+    <string name="enter_password">הכנס סיסמא</string>
+    <string name="enter_email">הכנס מספר טלפון</string>
+    <string name="enter_name">הכנס שם מלא</string>
+    <string name="insert_plate_num">הכנס מס\' רישוי</string>
+    <string name="insert_gas_card_num">הכנס מס\' כרטיס דלק</string>
+    <string name="insert_company_phone_index">הכנס מס\' טלפון של החברה</string>
+    <string name="approve_text">אני מאשר שמסרתי פרטים נכונים ומתחייב לשמור על רכוש החברה וכל נזק שיגרם אשא בתשלום</string>
+    <string name="send">אישור</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="enter_region_num">הכנס מספר סניף</string>
+</resources>
