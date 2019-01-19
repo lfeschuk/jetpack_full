@@ -116,8 +116,9 @@ private Query mDatabase = FirebaseDatabase.getInstance().getReference();
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                //todo
-
+                Delivery temp = new Delivery(dataSnapshot.getValue(Delivery.class));
+                array.remove(temp);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

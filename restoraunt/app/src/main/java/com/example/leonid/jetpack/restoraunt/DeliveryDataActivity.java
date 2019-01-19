@@ -704,12 +704,16 @@ public class DeliveryDataActivity extends AppCompatActivity implements MyDialogC
                 d_out.setIndexString("-1");
                 d_out.setRestoraunt_key(MainActivity.this_restoraunt.getKey());
                 d_out.setDifferent_address(different_address);
+                if (different_address != null && !different_address.equals(""))
+                {
+                    d_out.setIs_different_adress(true);
+                }
                 d_out.setRestoraunt_phone(MainActivity.this_restoraunt.getPhone());
                 d_out.setTime_max_to_costumer(MainActivity.this_restoraunt.getTime_to_costumer());
                 d_out.setSource_cord_long(MainActivity.this_restoraunt.getLongt());
                 d_out.setSource_cord_lat(MainActivity.this_restoraunt.getLat());
                 //this function will callback and write the delivery
-                getLocationFromAddress(DeliveryDataActivity.this,d_out.getAdressTo());
+                getLocationFromAddress(DeliveryDataActivity.this,d_out.getAdressTo(),d_out.getDifferent_address());
 
 
             }
@@ -720,30 +724,73 @@ public class DeliveryDataActivity extends AppCompatActivity implements MyDialogC
     }
 
 
-    public LatLng getLocationFromAddress(Context context, String strAddress) {
+    public LatLng getLocationFromAddress(Context context, String strAddress,String different_address_arg) {
 
         Geocoder coder = new Geocoder(context);
         List<Address> address;
+        List<Address> different_address;
         LatLng p1 = null;
 
         try {
             // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
-            if (address == null || address.isEmpty()) {
-                Log.d(TAG,"not found adress");
-                ((LocationFound)this).handleLocationFound(null);
-                return null;
+            if (different_address_arg != null)
+            {
+                different_address = coder.getFromLocationName(different_address_arg, 5);
+                if (different_address == null || different_address.isEmpty())
+                {
+                    Log.d(TAG,"not found different adress");
+                    ((LocationFound)this).handleLocationFound(null,false);
+                    return null;
+                }
+                else
+                {
+                    Address location = different_address.get(0);
+                    LatLng l = new LatLng(location.getLatitude(),location.getLongitude());
+                    Log.d(TAG,"location:" + location + " adress: " + different_address.get(0));
+                    Log.d(TAG,"strADres: " + strAddress);
+
+                    ((LocationFound)this).handleLocationFound(l,true);
+                    if (address == null || address.isEmpty()) {
+                        Log.d(TAG,"not found adress");
+                        ((LocationFound)this).handleLocationFound(null,false);
+                        return null;
+                    }
+
+                    Address location2 = address.get(0);
+                    LatLng l2 = new LatLng(location2.getLatitude(),location2.getLongitude());
+                    Log.d(TAG,"location:" + location2 + " adress: " + address.get(0));
+                    Log.d(TAG,"strADres: " + strAddress);
+
+                    ((LocationFound)this).handleLocationFound(l2,false);
+
+
+                    Log.d(TAG,"location: " + location);
+
+
+                }
+            }
+            else
+            {
+                if (address == null || address.isEmpty()) {
+                    Log.d(TAG,"not found adress");
+                    ((LocationFound)this).handleLocationFound(null,false);
+                    return null;
+                }
+
+                Address location2 = address.get(0);
+                LatLng l2 = new LatLng(location2.getLatitude(),location2.getLongitude());
+                Log.d(TAG,"location:" + location2 + " adress: " + address.get(0));
+                Log.d(TAG,"strADres: " + strAddress);
+
+                ((LocationFound)this).handleLocationFound(l2,false);
+
+
+                Log.d(TAG,"location: " + location2);
             }
 
-            Address location = address.get(0);
-            LatLng l = new LatLng(location.getLatitude(),location.getLongitude());
-            Log.d(TAG,"location:" + location + " adress: " + address.get(0));
-            Log.d(TAG,"strADres: " + strAddress);
-
-            ((LocationFound)this).handleLocationFound(l);
 
 
-            Log.d(TAG,"location: " + location);
 
         } catch (IOException ex) {
 
@@ -793,12 +840,20 @@ public class DeliveryDataActivity extends AppCompatActivity implements MyDialogC
     }
 
     @Override
-    public void handleLocationFound(LatLng loc) {
+    public void handleLocationFound(LatLng loc,Boolean is_different_adress) {
+       if (is_different_adress && (loc != null))
+       {
+           d_out.setSource_cord_lat(loc.latitude);
+           d_out.setSource_cord_long(loc.longitude);
+           return;
+       }
+
         if (loc != null)
         {
             d_out.setDest_cord_long(loc.longitude);
             d_out.setDest_cord_lat(loc.latitude);
         }
+
 
         if (is_delayed)
         {

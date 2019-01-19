@@ -56,9 +56,17 @@
                         android:id="@+id/on_or_off"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
+                        android:layout_toRightOf="@+id/num_of_deliveries"
                         android:theme="@style/SCBSwitch"
 
+                        />
+                    <TextView
+                        android:id="@+id/num_of_deliveries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="משלוחים:4"
+                        android:layout_alignParentLeft="true"
                         />
 
                 </RelativeLayout>
@@ -132,29 +140,49 @@
 
             </TextView>
 
-            <ImageButton
-                android:id="@+id/just_arrived"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/just_arrived"
-                android:background="@null"
-                android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/picked_the_delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!--<ImageButton-->
+                <!--android:id="@+id/just_arrived"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:src="@drawable/just_arrived"-->
+                <!--android:background="@null"-->
+                <!--/>-->
+            <Button
+                android:id="@+id/just_arrived"
+                style="@style/CircleButtonSizes"
+                android:background="@drawable/circle_red"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/picked"
-                android:background="@null"
+                android:drawableTop="@drawable/ic_arrived"
+                android:paddingTop="5dp"
+                android:text="הגעתי למסעדה"
+                android:textColor="#fff" />
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/picked_the_delivery"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:src="@drawable/picked"-->
+            <!--android:background="@null"-->
+            <!--android:text="אספתי את המשלוח"-->
+            <!--android:layout_alignParentLeft="true" />-->
+            <Button
+                style="@style/CircleButtonSizes"
+                android:id="@+id/picked_the_delivery"
+                android:background="@drawable/circle"
+                android:layout_alignParentBottom="true"
+                android:drawableTop="@drawable/ic_pizza_deliv_vec"
+                android:paddingTop="5dp"
                 android:text="אספתי את המשלוח"
-                android:layout_alignParentLeft="true" />
+                android:textColor="#fff" />
 
             <ImageButton
                 android:id="@+id/photo_butt"
@@ -163,7 +191,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/picked_the_delivery"
                 android:layout_toRightOf="@+id/picked_the_delivery"
-                android:src="@drawable/photo"
+                android:src="@drawable/ic_photo_vec"
                 android:background="@null"
                 android:text="whatsapp" />
             <ImageButton
@@ -173,7 +201,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/photo_butt"
                 android:layout_toRightOf="@+id/photo_butt"
-                android:src="@drawable/whatsap"
+                android:src="@drawable/whatsapp_vec"
                 android:background="@null"
                 android:text="whatsapp" />
 
@@ -184,7 +212,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/whatsapp_butt"
                 android:text="waze"
-                android:src="@drawable/waze"
+                android:src="@drawable/ic_waze_vec"
                 android:background="@null"
                 android:layout_toRightOf="@+id/whatsapp_butt" />
 
@@ -195,11 +223,17 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/waze_butt"
                 android:text="call"
-                android:src="@drawable/call"
+                android:src="@drawable/ic_call2_vec"
                 android:background="@null"
                 android:layout_toRightOf="@+id/waze_butt" />
 
+        </LinearLayout>
         </RelativeLayout>
+
+
+
+
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

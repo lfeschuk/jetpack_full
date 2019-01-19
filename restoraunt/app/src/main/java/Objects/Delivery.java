@@ -1,8 +1,5 @@
 package Objects;
 
-import android.net.Uri;
-import android.support.v4.util.Pair;
-
 import java.io.Serializable;
 
 public class Delivery implements Serializable {
@@ -20,6 +17,7 @@ public class Delivery implements Serializable {
     public String costumer_another_phone = "";
     private String timeArriveToRestoraunt = "";
     String time_aprox_deliver = "";
+    Boolean is_different_adress = false;
     private String timeTaken = "";
     private String timeDeliver = "";
     private Boolean was_late_restoraunt;
@@ -52,6 +50,23 @@ public class Delivery implements Serializable {
     public Boolean just_assigned_deliv = false;
     public int time_bonus = 0;
     public int time_max_to_costumer = 0;
+    public String prepare_time_modified = "";
+
+    public Boolean getIs_different_adress() {
+        return is_different_adress;
+    }
+
+    public void setIs_different_adress(Boolean is_different_adress) {
+        this.is_different_adress = is_different_adress;
+    }
+
+    public String getPrepare_time_modified() {
+        return prepare_time_modified;
+    }
+
+    public void setPrepare_time_modified(String prepare_time_modified) {
+        this.prepare_time_modified = prepare_time_modified;
+    }
 
 
     public int getTime_max_to_costumer() {
@@ -459,6 +474,8 @@ public class Delivery implements Serializable {
         this.time_aprox_deliver = d.getTime_aprox_deliver();
         this.time_bonus = d.getTime_bonus();
         this.time_max_to_costumer = d.getTime_max_to_costumer();
+        this.prepare_time_modified = d.getPrepare_time_modified();
+        this.is_different_adress = d.getIs_different_adress();
     }
 
     public String getAdressTo() {

@@ -17,6 +17,16 @@ public class Delivery implements Serializable {
     private String comment = "";
     private String num_of_packets = "";
     private String costumer_phone = "";
+
+
+    private String time_aprox_deliver = "";
+    private String time_aprox_deliver_to_rest = "";
+
+    private String time_aprox_deliver_first_not_late = "";
+    private String time_aprox_deliver_to_rest_first_not_late = "";
+
+
+
     public String costumer_another_phone = "";
     private String timeArriveToRestoraunt = "";
     private String timeTaken = "";
@@ -42,6 +52,7 @@ public class Delivery implements Serializable {
     private double dest_cord_lat;
     private double dest_cord_long;
     private Boolean is_gas_sta = false;
+
     private String price = "";
     private Boolean is_cash ;
     private String key = "";
@@ -49,16 +60,79 @@ public class Delivery implements Serializable {
     public String restoraunt_key = "";
     public String restoraunt_phone = "";
     public Boolean just_assigned_deliv = false;
-    public long time_bonus = 0;
+    public int time_bonus = 0;
+    public int time_max_to_costumer = 0;
 
-    public long getTime_bonus() {
+    public String time_modified_for_prepare = "";
+    public String time_assigned = "";
+
+    public String getTime_aprox_deliver_first_not_late() {
+        return time_aprox_deliver_first_not_late;
+    }
+
+    public String getTime_aprox_deliver_to_rest_first_not_late() {
+        return time_aprox_deliver_to_rest_first_not_late;
+    }
+
+    public void setTime_aprox_deliver_first_not_late(String time_aprox_deliver_first_not_late) {
+        this.time_aprox_deliver_first_not_late = time_aprox_deliver_first_not_late;
+    }
+
+    public void setTime_aprox_deliver_to_rest_first_not_late(String time_aprox_deliver_to_rest_first_not_late) {
+        this.time_aprox_deliver_to_rest_first_not_late = time_aprox_deliver_to_rest_first_not_late;
+    }
+
+    public String getTime_assigned() {
+        return time_assigned;
+    }
+
+    public void setTime_assigned(String time_assigned) {
+        this.time_assigned = time_assigned;
+    }
+
+    public String getPrepare_time_modified() {
+        return time_modified_for_prepare;
+    }
+
+    public void setPrepare_time_modified(String prepare_time_modified) {
+        this.time_modified_for_prepare = prepare_time_modified;
+    }
+
+    public String getTime_aprox_deliver_to_rest() {
+        return time_aprox_deliver_to_rest;
+    }
+
+    public void setTime_aprox_deliver_to_rest(String time_aprox_deliver_to_rest) {
+        this.time_aprox_deliver_to_rest = time_aprox_deliver_to_rest;
+    }
+
+    public int getTime_max_to_costumer() {
+        return time_max_to_costumer;
+    }
+
+    public String getTime_aprox_deliver() {
+        return time_aprox_deliver;
+    }
+
+    public void setTime_aprox_deliver(String time_aprox_deliver) {
+        this.time_aprox_deliver = time_aprox_deliver;
+    }
+
+    public void setTime_max_to_costumer(int time_max_to_costumer) {
+        this.time_max_to_costumer = time_max_to_costumer;
+    }
+
+
+
+
+
+    public int getTime_bonus() {
         return time_bonus;
     }
 
-    public void setTime_bonus(long time_bonus) {
+    public void setTime_bonus(int time_bonus) {
         this.time_bonus = time_bonus;
     }
-
 
 
     public String getRestoraunt_phone() {
@@ -348,7 +422,7 @@ public class Delivery implements Serializable {
                     double source_cord_lat, double source_cord_long, double dest_cord_lat, double dest_cord_long,
                     String deliveryGuyName, String date, String timeArriveToRestoraunt,String deliveryGuyPhone,String costumer_another_phone,
                     String intercum_num,String price,Boolean is_cash,String key,String restoraunt_key, String different_address,String restoraunt_phone,
-                    long time_bonus) {
+                    int time_bonus) {
         this.index = index;
         indexString = index.toString();
         this.adressTo = adressTo;
@@ -386,6 +460,8 @@ public class Delivery implements Serializable {
         this.restoraunt_key = restoraunt_key;
         this.different_address = different_address;
         this.restoraunt_phone = restoraunt_phone;
+
+
         this.time_bonus = time_bonus;
 
         //  this
@@ -437,6 +513,13 @@ public class Delivery implements Serializable {
         this.just_assigned_deliv = d.getJust_assigned_deliv();
         this.restoraunt_phone = d.getRestoraunt_phone();
         this.time_bonus = d.getTime_bonus();
+        this.time_max_to_costumer = d.getTime_max_to_costumer();
+        this.time_aprox_deliver = d.getTime_aprox_deliver();
+        this.time_aprox_deliver_to_rest = d.getTime_aprox_deliver_to_rest();
+        this.time_modified_for_prepare = d.getPrepare_time_modified();
+        this.time_assigned = d.getTime_assigned();
+        this.time_aprox_deliver_first_not_late = d.getTime_aprox_deliver_first_not_late();
+        this.time_aprox_deliver_to_rest_first_not_late = d.getTime_aprox_deliver_to_rest_first_not_late();
     }
 
 

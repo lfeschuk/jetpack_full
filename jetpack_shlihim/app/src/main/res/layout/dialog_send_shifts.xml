@@ -21,8 +21,8 @@
             android:layout_weight="1"
             android:text="יום ראשון: "
             android:gravity="right"
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text1"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -46,8 +46,8 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="יום שני: "
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text2"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -72,8 +72,8 @@
             android:layout_weight="1"
             android:text="יום שלישי: "
             android:gravity="right"
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text3"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -99,8 +99,8 @@
             android:layout_weight="1"
             android:text="יום רביעי: "
             android:gravity="right"
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text4"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -124,8 +124,8 @@
             android:layout_weight="1"
             android:text="יום חמישי: "
             android:gravity="right"
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text5"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -150,8 +150,8 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="יום שישי: "
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text6"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -176,8 +176,8 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="יום שבת: "
-            android:textSize="30dp"
-            android:textStyle="">
+            android:id="@+id/text7"
+            android:textStyle="bold">
 
         </TextView>
 

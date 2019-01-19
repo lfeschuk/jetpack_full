@@ -16,17 +16,21 @@ import android.graphics.Matrix;
 import android.location.Location;
 
 import com.example.leonid.jetpack.jetpack_shlihim.HelpfulClasses.GoogleService;
+import com.example.leonid.jetpack.jetpack_shlihim.Objects.Alerts;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.DataParser;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.Delivery;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.DeliveryGuysShift;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.Destination;
 
+import com.example.leonid.jetpack.jetpack_shlihim.Objects.DistanceDuration;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.InfoAttached;
+import com.example.leonid.jetpack.jetpack_shlihim.Objects.RouteCalculation;
 import com.example.leonid.jetpack.jetpack_shlihim.Objects.User;
 import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.location.LocationListener;
 
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -162,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
      String costumer_phone ;
      String restoraunt_phone ;
     View.OnClickListener second_on_click;
+    public static MediaPlayer player ;
+    Boolean is_first_on_child_added = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,8 +219,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Delivery_Guys");
                         mDatabase.child(this_delivery_guy.getIndex_string()).child("latetude").setValue(latitude);
                         mDatabase.child(this_delivery_guy.getIndex_string()).child("longtitude").setValue(longitude);
+                        this_delivery_guy.setLatetude(latitude);
+                        this_delivery_guy.setLongtitude(longitude);
+
+                        RouteCalculation rc = new RouteCalculation(true,null,false,"" ,
+                                new ArrayList<DistanceDuration>(),this_delivery_guy,this_delivery_guy.getDestinations(),this_delivery_guy.getDeliveries(),MainActivity.this);
+                        rc.calculate_routes();
 
                     }
+
 
                 }
             };
@@ -224,6 +237,47 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
 
+
+
+    }
+    public static Delivery getDelivery(Destination des,ArrayList<Delivery> deliv_array)
+    {
+        for (Delivery d : deliv_array)
+        {
+            if (d.getIndexString().equals(des.getIndex_string()))
+            {
+                return d;
+            }
+        }
+        return null;
+    }
+
+    public void updateUiCallback(ArrayList<Destination> array,ArrayList<Delivery> deliv_array,DeliveryGuys deliv_guy)
+    {
+
+     //   dbm.writeDeliveryDestArray(deliv_guy,array);
+          DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
+     //   mDatabase.child("Delivery_Guys").child(deliv_guy.getIndex_string()).child("destinations").setValue(array);
+      // dbm.setAproxTime(array,deliv_array,deliv_guy.getIndex_string());
+
+        for (Destination d : array)
+        {
+            Delivery to_update = getDelivery(d,deliv_array);
+            if (d.getTo_costumer())
+            {
+                mDatabase.child("Deliveries").child(to_update.getKey()).child("time_aprox_deliver").setValue(d.getTimeDeliver());
+            }
+            else
+            {
+                mDatabase.child("Deliveries").child(to_update.getKey()).child("time_aprox_deliver_to_rest").setValue(d.getTimeDeliver());
+            }
+        }
+        mDatabase.child("Delivery_Guys").child(deliv_guy.getIndex_string()).child("timeBeFree").setValue(array.get(array.size() - 1).getTimeDeliver());
+
+//            Intent intent = new Intent(DeliveryDataActivity.this, MainActivity.class);
+////            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+////            startActivity(intent);
+////            finish();
 
 
     }
@@ -280,12 +334,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         toggleSwitchButton();
                         setListenerOnDeliveries();
                         setListenerToStartShift();
+                        Alerts.register(MainActivity.this);
                         Log.d(TAG, "bb");
-                        if (!this_delivery_guy.getSent_start_shift_report()) {
-                            Log.d(TAG, "aa");
-                            Intent intent = new Intent(MainActivity.this, FillStartShiftActivity.class);
-                            startActivity(intent);
-                        }
                     }
                 }
             }
@@ -319,6 +369,54 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
+        mDatabase.child("Delivery_Guys").child(this_user.getIndexString()).child("is_active").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Boolean is_active = dataSnapshot.getValue(Boolean.class);
+                Log.d(TAG,"fff123");
+                if (is_active)
+                {
+                    if (!this_delivery_guy.getSent_start_shift_report())
+                    {
+                        Log.d(TAG,"mmm123");
+                        Intent intent = new Intent(MainActivity.this, FillStartShiftActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                else
+                    {
+                        this_delivery_guy.setSent_start_shift_report(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        mDatabase.child("Delivery_Guys").child(this_user.getIndexString()).child("sent_start_shift_report").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Boolean is_sent = dataSnapshot.getValue(Boolean.class);
+//                if (is_sent)
+//                {
+//                    this_delivery_guy.setSent_start_shift_report(true);
+//                }
+//                else
+//                {
+//                    this_delivery_guy.setSent_start_shift_report(false);
+//                    Intent intent = new Intent(MainActivity.this, FillStartShiftActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
     }
     public void setListenerOnDeliveries()
     {
@@ -327,7 +425,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mDatabase_.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d(TAG, "onChildAdded  destinations " + dataSnapshot.getValue()  + " count " + dataSnapshot.getChildrenCount());
+
+                    Log.d(TAG, "onChildAdded  destinations " + dataSnapshot.getValue() + " count " + dataSnapshot.getChildrenCount());
+                    if (dataSnapshot.getKey().equals("destinations") && !is_first_on_child_added) {
+                        array_dest.clear();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            Destination d = new Destination(ds.getValue(Destination.class));
+                            array_dest.add(d);
+                        }
+                        Toast.makeText(MainActivity.this, "שים לב כי מסלולך השתנה", Toast.LENGTH_LONG).show();
+                        setUI();
+                        Alerts.displayDialog(getApplicationContext());
+
+
+                    }
+                    else if (dataSnapshot.getKey().equals("destinations"))
+                    {
+                        is_first_on_child_added = false;
+                    }
+
 
 //                Map<String, Destination> td = (HashMap<String,Destination>) dataSnapshot.getValue();
 //                ArrayList<Destination> objectArrayList = new ArrayList<Destination>(td.values());
@@ -361,6 +477,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                     Toast.makeText(MainActivity.this, "שים לב כי מסלולך השתנה", Toast.LENGTH_LONG).show();
                     setUI();
+                    Alerts.displayDialog(getApplicationContext());
 
 
                 }
@@ -488,13 +605,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void setUI() {
         final TextView tv_main = findViewById(R.id.title);
         final TextView tv_adress = findViewById(R.id.adress);
+        final TextView num_Deliv = findViewById(R.id.num_of_deliveries);
+        num_Deliv.setText("משלוחים במשמרת:" + this_delivery_guy.getNum_of_deliveries());
         final RelativeLayout lt = findViewById(R.id.relative_layout);
         if (array_dest == null || array_dest.isEmpty()) {
             Toast.makeText(this, "No routes available", Toast.LENGTH_SHORT).show();
            // toolbar.setVisibility(View.GONE);
             RelativeLayout rl = findViewById(R.id.relative_layout);
             tv_adress.setVisibility(View.GONE);
-            tv_main.setText("ללא משלוחים פעילים");
+            tv_main.setText("\n" +"ללא משלוחים פעילים");
             rl.setVisibility(View.GONE);
 
             return;
@@ -513,9 +632,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         lt.setVisibility(View.VISIBLE);
         final TextView tv_num_pack = MainActivity.this.findViewById(R.id.num_of_packs);
         //Log.d(TAG,"eee7 " + MainActivity.this.findViewById(R.id.num_of_packs));
-        for (int i=2;i<lt.getChildCount();i++)
+        int max = lt.getChildCount();
+        for (int i=2;i<max;i++)
         {
-            lt.removeViewAt(i);
+            lt.removeViewAt(2);
         }
         tv_main.setText(first.getBusiness_name());
         tv_main.setTextSize(20);
@@ -539,11 +659,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
       //  Log.d(TAG,"eee5 " + MainActivity.this.findViewById(R.id.num_of_packs));
         if (first.getTo_costumer()) {
             begining = "כתובת לקוח: ";
-            ImageButton pickedup = findViewById(R.id.picked_the_delivery);
-            pickedup.setImageDrawable(getResources().getDrawable(R.drawable.delivered));
+            Button pickedup = findViewById(R.id.picked_the_delivery);
+            pickedup.setText("מסרתי את המשלוח");
             ImageButton photo = findViewById(R.id.photo_butt);
             photo.setVisibility(View.VISIBLE);
-            ImageButton just_arrived = findViewById(R.id.just_arrived);
+            Button just_arrived = findViewById(R.id.just_arrived);
             just_arrived.setVisibility(View.INVISIBLE);
             //pickedup.setBackgroundResource(R.drawable.delivered);
             String costumer_name = first.getName_costumer();
@@ -559,10 +679,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             info4.setGravity(Gravity.START);
             String out3 = "";
             String out4 = "";
+            String out= "";
             for (Delivery d : array) {
                 if (d.getIndexString().equals(first.getDelivery_index())) {
-                    String out = "קומה:" + d.getFloor() + ", כניסה:" + d.getEntrance() ;
-                  //  Log.d(TAG,"outtemp: " + out);
+
+                    if (!d.getFloor().equals(""))
+                    {
+                        out += "קומה:" + d.getFloor();
+                        if (!d.getEntrance().equals(""))
+                        {
+                            out += ", כניסה:" + d.getEntrance();
+                        }
+                    }
+                    else if (!d.getEntrance().equals(""))
+                    {
+                        out += "כניסה:" + d.getEntrance();
+                    }
                     if (d.getIs_cash()) {
                         out3 = "התשלום במזומן";
                         if (!d.getPrice().equals("")) {
@@ -574,10 +706,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if (!d.getIntercum_num().equals("")) {
                         out4 = "הקוד לאינרקום: " + d.getIntercum_num();
                     }
-                    info1.setText(out);
-                    info2.setText("הערה:" + d.getComment());
+
+                    if (!out.equals(""))
+                    {
+                        info1.setText(out);
+                    }
+                    else
+                    {
+                        info1.setText("לא הוזנו קומה וכניסה");
+                    }
+                    if (!d.getComment().equals(""))
+                    {
+                        info2.setText("הערה:" + d.getComment());
+                    }
+                    else
+                    {
+                        info2.setText("ללא הערות");
+                    }
                     info3.setText(out3);
-                    info4.setText(out4);
+                    if (!out4.equals(""))
+                    {
+                        info4.setText(out4);
+                    }
+                    else {
+                        info4.setText("לא הוזן קודם לאינרקום");
+                    }
+
                     break;
                 }
 
@@ -589,6 +743,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             final RelativeLayout.LayoutParams params3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             params3.addRule(RelativeLayout.BELOW,info2.getId());
             Log.d(TAG,"r1 " +info1.getId() +" prev: " + prev_view_id + " r2: " + info2.getId());
+
             lt.addView(info1, params1);
             lt.addView(info2, params2);
             lt.addView(info3,params3);
@@ -601,14 +756,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
         } else {
-            ImageButton pickedup = findViewById(R.id.picked_the_delivery);
-           // pickedup.setBackgroundResource(R.drawable.picked);
-            pickedup.setImageDrawable(getResources().getDrawable(R.drawable.picked));
+            Button pickedup = findViewById(R.id.picked_the_delivery);
+            pickedup.setText("אספתי את המשלוח");
             ImageButton photo = findViewById(R.id.photo_butt);
             photo.setVisibility(View.INVISIBLE);
-            ImageButton just_arrived = findViewById(R.id.just_arrived);
+            Button just_arrived = findViewById(R.id.just_arrived);
             just_arrived.setVisibility(View.VISIBLE);
-            begining = "כתובת מסעדה: ";
+            if (first.getIs_from_another_adress())
+            {
+                begining = "כתובת אחרת לאיסוף: ";
+            }
+            else
+            {
+                begining = "כתובת מסעדה: ";
+            }
+
             tv_adress.setText(begining + first.getAdressFrom());
             if (first.getMerged_indeces().size() > 0) {
                 tv_num_pack.setText(first.getMerged_indeces().size() + " חבילות");
@@ -630,10 +792,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
                 final RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 params1.addRule(RelativeLayout.BELOW,prev_view_id);
-                lt.addView(adressTo, params1);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     adressTo.setId(View.generateViewId());
                 }
+                lt.addView(adressTo, params1);
                 prev_view_id = adressTo.getId();
                 hidden_text_array.add(adressTo);
 
@@ -684,6 +846,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
+    public String parse_number_to_int(String phone)
+    {
+        return phone.replaceFirst("0","972");
+    }
 
     public void set_buttons() {
 
@@ -720,11 +886,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_MAIN);
-                PackageManager managerclock = getPackageManager();
-                i = managerclock.getLaunchIntentForPackage("com.whatsapp");
-                i.addCategory(Intent.CATEGORY_LAUNCHER);
-                startActivity(i);
+                String phone = parse_number_to_int("0525641938");
+                Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + phone);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 //https://waze.com/ul?q=66%20Acacia%20Avenue
@@ -741,7 +906,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        ImageButton pickedup = findViewById(R.id.picked_the_delivery);
+        Button pickedup = findViewById(R.id.picked_the_delivery);
         pickedup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -817,6 +982,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         if (to_costumer)
                         {
                             this_delivery_guy.incNumOfDeliveries();
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Delivery_Guys");
+                            mDatabase.child(this_delivery_guy.getIndex_string()).child("num_of_deliveries").setValue(this_delivery_guy.getNum_of_deliveries());
                         }
                         if (current != null)
                         {
@@ -832,7 +999,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                            //     int minutes_int = Integer.valueOf(minutes);
                                 if (min != 0)
                                 {
-                                    add_time_bonus(min);
+                                    add_time_bonus((int)min);
                                 }
                             } catch (ParseException e) {
                                 e.printStackTrace();
@@ -860,41 +1027,49 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (array_dest.isEmpty())
-                {
-                    Toast.makeText(MainActivity.this, "אין משלוחים פעילים כרגע",Toast.LENGTH_LONG ).show();
-                    return;
-                }
+
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE},
                             REQUEST_PHONE_CALL);
                 }
-
-
-
-                Destination first = array_dest.get(0);
-                for (Delivery d: array)
+                Destination first = null;
+                if (array_dest.isEmpty())
                 {
-                    if (first.getDelivery_index().equals(d.getIndexString()))
+                    Toast.makeText(MainActivity.this, "אין משלוחים פעילים כרגע",Toast.LENGTH_LONG ).show();
+                    return;
+                }
+                else
+                {
+                     first = array_dest.get(0);
+                    for (Delivery d: array)
                     {
-                        restoraunt_phone = d.getRestoraunt_phone();
-                        costumer_phone = d.getCostumer_phone();
-                        break;
+                        if (first.getDelivery_index().equals(d.getIndexString()))
+                        {
+                            restoraunt_phone = d.getRestoraunt_phone();
+                            costumer_phone = d.getCostumer_phone();
+                            break;
+                        }
                     }
                 }
+
+
 
                 PopupMenu popup = new PopupMenu(MainActivity.this, view);
                 // Inflate the menu from xml
                 popup.getMenuInflater().inflate(R.menu.popup_call, popup.getMenu());
                 final Menu popupMenu = popup.getMenu();
-                if (first.getTo_costumer())
-                {
-                    popupMenu.findItem(R.id.two).setEnabled(true);
+                if (first != null) {
+                    if (first.getTo_costumer()) {
+                        popupMenu.findItem(R.id.two).setEnabled(true);
+                    } else {
+                        popupMenu.findItem(R.id.two).setEnabled(false);
+                    }
                 }
                 else
                 {
                     popupMenu.findItem(R.id.two).setEnabled(false);
+                    popupMenu.findItem(R.id.one).setEnabled(false);
                 }
 
 
@@ -917,6 +1092,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                  intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + costumer_phone));
                                 startActivity(intent);
                                 return true;
+                            case R.id.tree:
+                                intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0525641938"));
+                                startActivity(intent);
+                                return true;
                             default:
                                 return false;
                         }
@@ -929,7 +1108,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        ImageButton just_arrived = findViewById(R.id.just_arrived);
+        final Button just_arrived = findViewById(R.id.just_arrived);
         just_arrived.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -967,6 +1146,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                            current.setTimeArriveToRestoraunt(timeStamp);
                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Deliveries");
                            mDatabase.child(current.getKey()).child("timeArriveToRestoraunt").setValue(timeStamp);
+                           just_arrived.setVisibility(View.INVISIBLE);
                        }
 
                     }
@@ -1084,7 +1264,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         dialog.show();
     }
 
-    void add_time_bonus(long time)
+    void add_time_bonus(int time)
     {
         for (Destination d : array_dest)
         {
@@ -1134,8 +1314,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mapViewBundle = new Bundle();
             outState.putBundle(MAP_VIEW_BUNDLE_KEY, mapViewBundle);
         }
+    try {
+    mMapView.onSaveInstanceState(mapViewBundle);
+    }
+    catch (NullPointerException e)
+    {
 
-        mMapView.onSaveInstanceState(mapViewBundle);
+    }
+
     }
 
 
@@ -1700,6 +1886,42 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     c.add(Calendar.DATE,7);
                     //last sunday/today
                     final String sunday_date =  df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String monday_date = df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String tuesday_date = df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String wednesday_date = df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String thursday_date = df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String friday_date = df.format(c.getTime());
+                    c.add(Calendar.DATE,1);
+                    final String saturday_date = df.format(c.getTime());
+
+                    TextView sund = v.findViewById(R.id.text1);
+
+                    sund.setText(sunday_date + " יום ראשון:");
+
+                    TextView mond = v.findViewById(R.id.text2);
+
+                    mond.setText(monday_date + " יום שני:");
+
+                    TextView tues = v.findViewById(R.id.text3);
+
+                    tues.setText(tuesday_date + " יום שלישי:");
+                    TextView wedn = v.findViewById(R.id.text4);
+
+                    wedn.setText(wednesday_date + " יום רביעי:");
+                    TextView thurs = v.findViewById(R.id.text5);
+
+                    thurs.setText(thursday_date + " יום חמישי:");
+                    TextView frid = v.findViewById(R.id.text6);
+
+                    frid.setText(friday_date + " יום שישי:");
+                    TextView satu = v.findViewById(R.id.text7);
+
+                    satu.setText(saturday_date + " יום שבת:");
 
 
 

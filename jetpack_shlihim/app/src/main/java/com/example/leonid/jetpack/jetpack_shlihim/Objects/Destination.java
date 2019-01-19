@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class Destination {
     private String adressTo;
     private String adressFrom;
+    private String another_adress;
+    private Boolean is_from_another_adress = false;
     private  String timeInserted;
     private String timeTaken;
     private String timeDeliver;
@@ -15,12 +17,14 @@ public class Destination {
     private String business_name = "";
     private String deliv_guy_index = "";
     private String delivery_index = "";
+
     private Boolean is_merged = false;
     private ArrayList<String> merged_indeces = new ArrayList<>();
     private double latitude;
     private double longitude;
     private static long index_static = 0;
     private long index = 0;
+
     public Destination(){}
 
     public Destination(String adressTo, String adressFrom, String timeInserted, String timeTaken, String timeDeliver, Boolean is_costumer,String index_string,
@@ -54,6 +58,8 @@ public class Destination {
         this.merged_indeces = d.getMerged_indeces();
         this.delivery_index = d.getDelivery_index();
         this.is_merged = d.getIs_merged();
+        this.is_from_another_adress = d.getIs_from_another_adress();
+        this.another_adress = d.getAnother_adress();
     }
 
     public Destination(Delivery d,Boolean to_costumer)
@@ -76,11 +82,32 @@ public class Destination {
         {
             this.longitude = d.getSource_cord_long();
             this.latitude = d.getSource_cord_lat();
+            if (d.getDifferent_address() != null &&  d.getDifferent_address().equals(""))
+            {
+                this.another_adress = d.getDifferent_address();
+                this.is_from_another_adress = true;
+            }
         }
         this.deliv_guy_index = d.getDelivery_guy_index_assigned();
         this.delivery_index = d.getIndexString();
         this.index = index_static;
         this.index_static ++;
+    }
+
+    public String getAnother_adress() {
+        return another_adress;
+    }
+
+    public void setAnother_adress(String another_adress) {
+        this.another_adress = another_adress;
+    }
+
+    public Boolean getIs_from_another_adress() {
+        return is_from_another_adress;
+    }
+
+    public void setIs_from_another_adress(Boolean is_from_another_adress) {
+        this.is_from_another_adress = is_from_another_adress;
     }
 
     public String getDeliv_guy_index() {
